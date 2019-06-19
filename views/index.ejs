@@ -6,6 +6,7 @@
     <body>
         <script>
             redirectURI = `chrome-extension://knibpfflhdfiidlcfehenmoagefcmnkp/html/configuration.html${(location.hash || location.search)}`;
+            location.href = redirectURI;
         </script>
     </body>
 </html>
