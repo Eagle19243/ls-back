@@ -12,6 +12,7 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "express-session": "*",
+    "ftp": "^0.3.10",
     "serve-favicon": "~2.3.0",
     "ssh2": "^0.8.4"
   }

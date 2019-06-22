@@ -1,7 +1,7 @@
-const express   = require('express');
-const router    = express.Router();
-const Client    = require('ssh2').Client;
-const conn      = new Client(); 
+const express    = require('express');
+const router     = express.Router();
+const SFTPClient = require('ssh2').Client;
+const FTPClient  = require('ftp');;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,25 +9,43 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/sftp_test', (req, res, next) => {
+    const isSFTP    = req.body.is_sftp;
     const host      = req.body.host;
     const port      = req.body.port;
     const username  = req.body.username;
     const password  = req.body.password;
     
-    conn.on('ready', function() {
-        conn.sftp(function(err, sftp) {
-            if (err) {
-                res.send({ success: false, error: err.message });
-            } else {
-                res.send({ success: true });
-            }
+    if (isSFTP) {
+        const conn = new SFTPClient(); 
+        conn.on('ready', () => {
+            conn.sftp((err, sftp) => {
+                if (err) {
+                    console.log('SFTP error:', err);
+                    res.send({ success: false, error: err.message });
+                } else {
+                    res.send({ success: true });
+                }
+            });
+        }).connect({
+            host: host,
+            port: port,
+            username: username,
+            password: password
         });
-    }).connect({
-        host: host,
-        port: port,
-        username: username,
-        password: password
-    });
+    } else {
+        const encryption = req.body.encryption;
+        const conn = new FTPClient();
+        conn.on('ready', (err) => {
+            console.log('FTP error:', err);
+            res.send({ success: true });
+        }).connect({
+            host: host,
+            port: port,
+            user: user,
+            password: password,
+            secure: encryption
+        });
+    }
 });
 
 // router.post('/sftp_upload', (req, res, next) => {
