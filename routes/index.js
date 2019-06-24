@@ -15,7 +15,7 @@ router.post('/sftp_test', (req, res, next) => {
     const username  = req.body.username;
     const password  = req.body.password;
     
-    if (isSFTP) {
+    if (isSFTP > 0) {
         const conn = new SFTPClient(); 
         conn.on('ready', () => {
             conn.sftp((err, sftp) => {
