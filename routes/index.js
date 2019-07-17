@@ -19,12 +19,12 @@ router.post('/sftp_test', (req, res, next) => {
         const conn = new SFTPClient(); 
         conn.on('ready', () => {
             conn.sftp((err, sftp) => {
-                if (err) {
-                    console.log('SFTP error:', err);
-                    res.send({ success: false, error: err.message });
-                } else {
+                // if (err) {
+                //     console.log('SFTP error:', err);
+                //     res.send({ success: false, error: err.message });
+                // } else {
                     res.send({ success: true });
-                }
+                // }
             });
         }).connect({
             host: host,
