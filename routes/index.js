@@ -65,16 +65,14 @@ router.post('/sftp_upload', (req, res, next) => {
                     console.log('SFTP error:', err);
                     res.send({ success: false, error: err.message });
                 } else {
-                    sftp.mkdir('/lightspeed', (err) => {
-                        const writeStream = sftp.createWriteStream(`/lightspeed/${filename}`);
-                        writeStream.on('close', () => {
-                            console.log( "File transferred" );
-                            sftp.end();
-                            res.send({ success: true, url: `${host}/lightspeed/${filename}` });
-                        });
-                        writeStream.write(content);
-                        writeStream.end();
+                    const writeStream = sftp.createWriteStream(`/lightspeed/${filename}`);
+                    writeStream.on('close', () => {
+                        console.log( "File transferred" );
+                        sftp.end();
+                        res.send({ success: true, url: `${host}/lightspeed/${filename}` });
                     });
+                    writeStream.write(content);
+                    writeStream.end();
                 }
             });
         }).connect({
@@ -87,18 +85,16 @@ router.post('/sftp_upload', (req, res, next) => {
         const encryption = req.body.encryption;
         const conn = new FTPClient();
         conn.on('ready', () => {
-            conn.mkdir('/lightspeed', () => {
-                conn.put(content, `/lightspeed/${filename}`, (err) => {
-                    if (err) {
-                        console.log('FTP error:', err);
-                        res.send({ success: false, error: err.message });
-                    } else {
-                        console.log( "File transferred" );
-                        res.send({ success: true, url: `${host}/lightspeed/${filename}` });
-                    }
-    
-                    conn.end();
-                });
+            conn.put(content, `/lightspeed/${filename}`, (err) => {
+                if (err) {
+                    console.log('FTP error:', err);
+                    res.send({ success: false, error: err.message });
+                } else {
+                    console.log( "File transferred" );
+                    res.send({ success: true, url: `${host}/lightspeed/${filename}` });
+                }
+
+                conn.end();
             });
         }).connect({
             host: host,
