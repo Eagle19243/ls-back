@@ -65,7 +65,7 @@ router.post('/sftp_upload', (req, res, next) => {
                     console.log('SFTP error:', err);
                     res.send({ success: false, error: err.message });
                 } else {
-                    const writeStream = sftp.createWriteStream(`/lightspeed/${filename}`);
+                    const writeStream = sftp.createWriteStream(`/${filename}`);
                     writeStream.on('close', () => {
                         console.log( "File transferred" );
                         sftp.end();
@@ -85,7 +85,7 @@ router.post('/sftp_upload', (req, res, next) => {
         const encryption = req.body.encryption;
         const conn = new FTPClient();
         conn.on('ready', () => {
-            conn.put(content, `/lightspeed/${filename}`, (err) => {
+            conn.put(content, `/${filename}`, (err) => {
                 if (err) {
                     console.log('FTP error:', err);
                     res.send({ success: false, error: err.message });
