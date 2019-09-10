@@ -40,11 +40,11 @@ router.post('/sftp_test', (req, res, next) => {
             console.log(error)
         });
 
-        conn.on('ready', (err) => {
-            console.log(err);
-            res.send({ success: true });
-        });
-        
+        // conn.on('ready', (err) => {
+        //     console.log(err);
+        //     res.send({ success: true });
+        // });
+
         conn.connect({
             host: host,
             port: port,
