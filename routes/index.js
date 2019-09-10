@@ -43,7 +43,9 @@ router.post('/sftp_test', (req, res, next) => {
         conn.on('ready', (err) => {
             console.log(err);
             res.send({ success: true });
-        }).connect({
+        });
+        
+        conn.connect({
             host: host,
             port: port,
             user: username,
