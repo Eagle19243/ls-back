@@ -15,6 +15,8 @@ router.post('/sftp_test', (req, res, next) => {
     const port      = req.body.port;
     const username  = req.body.username;
     const password  = req.body.password;
+
+    console.log("isSFTP::::", isSFTP)
     
     if (isSFTP > 0) {
         const conn = new SFTPClient(); 
