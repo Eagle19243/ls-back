@@ -36,9 +36,7 @@ router.post('/sftp_test', (req, res, next) => {
     } else {
         const encryption = req.body.encryption;
         const conn = new FTPClient();
-        conn.on('error', (error) => {
-            console.log(error)
-        });
+        
 
         // conn.on('ready', (err) => {
         //     console.log(err);
@@ -51,6 +49,11 @@ router.post('/sftp_test', (req, res, next) => {
             user: username,
             password: password,
             secure: encryption > 0
+        });
+
+        conn.on('error', (error) => {
+            // logger.log(error)
+            console.log(error)
         });
     }
 });
