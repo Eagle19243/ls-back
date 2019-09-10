@@ -45,17 +45,17 @@ router.post('/sftp_test', (req, res, next) => {
         //     res.send({ success: true });
         // });
 
-        conn.connect({
+        
+
+        conn.on('error', (error) => {
+            // logger.log(error)
+            console.log(error)
+        }).connect({
             host: host,
             port: port,
             user: username,
             password: password,
             secure: encryption > 0
-        });
-
-        conn.on('error', (error) => {
-            // logger.log(error)
-            console.log(error)
         });
     }
 });
