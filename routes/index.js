@@ -45,6 +45,7 @@ router.post('/sftp_test', (req, res, next) => {
         });
 
         conn.on('error', () => {
+            conn.end();
             res.send({success: false})
         });
         
