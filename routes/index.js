@@ -39,20 +39,16 @@ router.post('/sftp_test', (req, res, next) => {
         const encryption = req.body.encryption;
         const conn = new FTPClient();
         
-
-        // conn.on('ready', (err) => {
-        //     console.log(err);
-        //     res.send({ success: true });
-        // });
-
-        conn.addListener('error', (error) => {
-            console.log(error)
+        conn.on('ready', () => {
+            console.log(err);
+            res.send({ success: true });
         });
 
-        conn.on('error', (error) => {
-            // logger.log(error)
-            console.log(error)
-        }).connect({
+        conn.on('error', () => {
+            res.send({success: false})
+        });
+        
+        conn.connect({
             host: host,
             port: port,
             user: username,
