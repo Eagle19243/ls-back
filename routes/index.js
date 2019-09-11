@@ -40,7 +40,6 @@ router.post('/sftp_test', (req, res, next) => {
         const conn = new FTPClient();
         
         conn.on('ready', () => {
-            console.log(err);
             res.send({ success: true });
         });
 
