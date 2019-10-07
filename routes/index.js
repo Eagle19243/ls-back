@@ -101,7 +101,7 @@ router.post('/sftp_upload', (req, res, next) => {
                     res.send({ success: false, error: err.message });
                 } else {
                     console.log( "File transferred" );
-                    res.send({ success: true, url: `${host}/lightspeed/${filename}` });
+                    res.send({ success: true, url: `${host}/ls/${filename}` });
                 }
 
                 conn.end();
