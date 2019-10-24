@@ -106,7 +106,14 @@ router.post('/sftp_upload', (req, res, next) => {
 
                 conn.end();
             });
-        }).connect({
+        });
+
+        conn.on('error', () => {
+            conn.end();
+            res.send({success: false})
+        });
+
+        conn.connect({
             host: host,
             port: port,
             user: username,
