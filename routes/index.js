@@ -108,9 +108,9 @@ router.post('/sftp_upload', (req, res, next) => {
             });
         });
 
-        conn.on('error', () => {
+        conn.on('error', (err) => {
             conn.end();
-            res.send({success: false})
+            res.send({success: false, message: err})
         });
 
         conn.connect({
