@@ -80,7 +80,7 @@ router.post('/sftp_upload', (req, res, next) => {
                     writeStream.on('close', () => {
                         console.log( "File transferred" );
                         sftp.end();
-                        res.send({ success: true, url: `${protocal}://${host}/lightspeed/${filename}` });
+                        res.send({ success: true, url: `${protocal}${host}/lightspeed/${filename}` });
                     });
                     writeStream.write(content);
                     writeStream.end();
@@ -102,7 +102,7 @@ router.post('/sftp_upload', (req, res, next) => {
                     res.send({ success: false, error: err.message });
                 } else {
                     console.log( "File transferred" );
-                    res.send({ success: true, url: `${protocal}://${host}/ls/${filename}` });
+                    res.send({ success: true, url: `${protocal}${host}/ls/${filename}` });
                 }
 
                 conn.end();
