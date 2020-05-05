@@ -66,7 +66,7 @@ router.post('/sftp_upload', (req, res, next) => {
     const username  = req.body.username;
     const password  = req.body.password;
     const content   = req.body.content;
-    const filename  = `${(new Date()).getTime()}.html`;
+    const filename  = `${req.body.filename}.html`;
     
     if (isSFTP > 0) {
         const conn = new SFTPClient(); 
