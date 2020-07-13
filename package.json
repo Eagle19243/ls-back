@@ -1,11 +1,12 @@
 {
-  "name": "ls-backend",
+  "name": "lightspeed-backend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@ringcentral/sdk": "^4.3.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
     "debug": "^4.2.0",
@@ -13,6 +14,8 @@
     "express": "^4.17.1",
     "express-session": "*",
     "ftp": "^0.3.10",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.23",
     "serve-favicon": "^2.5.0",
     "ssh2": "^0.8.4"
   }
