@@ -1,4 +1,4 @@
-const config   = require('config.json');
+const config   = require('../config');
 const mongoose = require('mongoose');
 const connectionOptions = { 
     useCreateIndex: true, 
@@ -7,7 +7,7 @@ const connectionOptions = {
     useFindAndModify: false 
 };
 
-mongoose.connect(process.env.MONGODB_URI || config.connectionString, connectionOptions);
+mongoose.connect(process.env.MONGODB_URI || config.connection, connectionOptions);
 mongoose.Promise = global.Promise;
 
 module.exports = {
