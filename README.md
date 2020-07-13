@@ -1,3 +1,2 @@
-# SelectPOP-WebRTC
-
-https://selectpop-webrtc.herokuapp.com/
+# lightspeed-backend
+Backend for TransactionTree Chrome Extension

@@ -1,21 +1,11 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-const errorHandler = require('_helpers/error-handler');
+const express      = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const app          = express();
+const errorHandler = require('./_helpers/error-handler');
 
-var app = express();
-global.appRoot = path.resolve(__dirname);
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/', require('./routes/index'));
