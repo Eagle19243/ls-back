@@ -6,7 +6,7 @@ const router     = express.Router();
  * if no phone number, return all messages
  */
 router.post('/get', (req, res) => {
-    
+    const rcAuthData = req.body.rcAuthData;
 });
 
 module.exports = router;

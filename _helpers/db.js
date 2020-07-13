@@ -7,7 +7,7 @@ const connectionOptions = {
     useFindAndModify: false 
 };
 
-mongoose.connect(process.env.MONGODB_URI || config.connection, connectionOptions);
+mongoose.connect(process.env.MONGODB_URI || config.db.connection, connectionOptions);
 mongoose.Promise = global.Promise;
 
 module.exports = {
