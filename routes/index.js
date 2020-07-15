@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
+/** Should be removed once v4 is in live */
 router.post('/sftp_test', (req, res) => {
     const isSFTP    = req.body.is_sftp;
     const host      = req.body.host;
