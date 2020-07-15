@@ -12,7 +12,7 @@ const ringcentral = {
     getMessages
 }
 
-async function getContacts(rcAuthData) {    
+async function getContact(rcAuthData) {    
     rcPlatform.auth().setData(rcAuthData);
 
     try {
@@ -20,12 +20,12 @@ async function getContacts(rcAuthData) {
         const jsonObj = response.json();
         return jsonObj.records;
     } catch (err) {
-        console.log('getContacts', err.message);
+        console.log('getContact', err.message);
         return [];
     }
 }
 
-async function getMessageList(rcAuthData) {        
+async function getMessageList(rcAuthData) {
     rcPlatform.auth().setData(rcAuthData);
 
     try {
@@ -38,13 +38,12 @@ async function getMessageList(rcAuthData) {
     }
 }
 
-async function getMessages(phoneNumber, rcAuthData) {
-    // const contacts = await getContacts(rcAuthData);
+async function getMessages(phone, rcAuthData) {
     const messages = await getMessageList(rcAuthData);
     const result   = {};
     
     for (const data of messages) {
-        if (data['from']['phoneNumber'] != phoneNumber) {
+        if (data['from']['phoneNumber'] != phone) {
             if (result[data['from']['phoneNumber']] != undefined) {
                 result[data['from']['phoneNumber']].push(data);
             } else {

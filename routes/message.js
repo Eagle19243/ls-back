@@ -7,8 +7,8 @@ const ringcentral = require('../utils/ringcentral');
  */
 router.post('/get', async (req, res) => {
     const rcAuthData  = req.body.rcAuthData;
-    const phoneNumber = req.body.phoneNumber;
-    const messages    = await ringcentral.getMessages(phoneNumber, rcAuthData);
+    const phone       = req.body.phone;
+    const messages    = await ringcentral.getMessages(phone, rcAuthData);
     
     res.send({
         success     : true,
