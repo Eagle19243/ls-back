@@ -8,7 +8,9 @@ router.use('/sftp', require('./sftp'));
 
 /* GET home page. */
 router.get('/', (req, res) => {
-    res.render('index');
+    res.status(200).json({
+        success: true
+    });
 });
 
 /** Should be removed once v4 is in live */
