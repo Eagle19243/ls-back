@@ -3,7 +3,6 @@ const router     = express.Router();
 const SFTPClient = require('ssh2').Client;
 const FTPClient  = require('ftp');
 
-router.use('/template', require('./template'));
 router.use('/sftp', require('./sftp'));
 
 /* GET home page. */
